@@ -2,9 +2,10 @@ import React, { createContext,useContext,useState } from "react";
 const AuthContext = createContext();
 import {loginApi,registerApi} from "../api/AuthApi";
 
+
 export const AuthContextProvider = ({children}) =>{
     const [user,setUser] = useState(null);
-    const [loading,setLoading] = useState(false);
+    const [loader,setLoader] = useState(false);
 
     const register = async(formData) =>
     {
@@ -31,12 +32,12 @@ export const AuthContextProvider = ({children}) =>{
     const login = async(userData,passData) => {
         try
         {
-            setLoading(true);
+            setLoader(true);
             const data = await loginApi(userData,passData);
             console.log(data);
             localStorage.setItem("token",data.token);
             setUser(data.user);
-           setLoading(false);
+           setLoader(false);
 
         }
         catch(error)
@@ -48,12 +49,12 @@ export const AuthContextProvider = ({children}) =>{
     const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
-    setLoading(false);
+    setLoader(false);
     return true;
   };
 
     return (
-        <AuthContext.Provider value={{user,login,logout,loading,register}}>
+        <AuthContext.Provider value={{user,login,logout,loader,register}}>
             {children}
         </AuthContext.Provider>
     );

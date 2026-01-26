@@ -4,28 +4,29 @@ import Loader from '../Items/Loader';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { user, pass, login, logout,loading } = useAuth();
+    const { login,loader } = useAuth();
     const navigate = useNavigate();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         debugger
-        login(userName,password);
+        await login(userName,password);
         const token = localStorage.getItem("token");
-        console.log("data token:",token);
-        if(token!= null){
+        console.log("Token data :",token.claims);
+        if (token != null) {
             navigate("/Products");
-        }
+          }
     };
 
     return (
         <div className="login-container">
-            {loading && <Loader/>}
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
                     <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">Login</h2>
+                    {loader && <Loader/>}
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">

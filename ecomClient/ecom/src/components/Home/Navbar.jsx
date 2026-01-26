@@ -149,12 +149,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { logout } = useAuth();
   const navigate = useNavigate();
+
   function logoutfn(e) {
-    e.preventDefault
-      ();
-    const data = logout();
-    if (data) {
-      alert("Loging out ...");
+    e.preventDefault();
+
+    const response = logout();
+
+    if (response) 
+    {
+      alert("Logout successfully..");
       navigate("/Login");
     }
   }
@@ -394,28 +397,31 @@ export default function Navbar() {
               </div>
 
               <div className="ml-auto flex items-center">
+              {!localStorage.getItem("token") && (
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <Link to="/Login" >Sign in</Link>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
                   <Link to="/Register">Create account</Link>
                 </div>
-
-                {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <Cart />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
-                </div>
+              )}
                 {/* <div className="hidden lg:ml-8 lg:flex items-center">
                   <span className="ml-3 mr-3 block text-sm font-medium">Profile</span>
                   <Avatar />
                 </div> */}
+                
                 {localStorage.getItem("token") && (
+                    <>
+                <div className="ml-4 flow-root lg:ml-6">
+                <a href="#" className="group -m-2 flex items-center p-2">
+                  <Cart />
+                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                  <span className="sr-only">items in cart, view bag</span>
+                </a>
+              </div>
                   <div className="m-5 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
                     <button onClick={logoutfn}>Logout</button>
                   </div>
+                  </>
                 )}
 
               </div>
