@@ -1,6 +1,7 @@
 import React from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
-
+import { useCart } from '../../contexts/cartContext'
+import { useLocation } from 'react-router-dom'
 const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -60,6 +61,19 @@ function classNames(...classes) {
 }
 
 function ProductOverView() {
+
+  const { addToCart } = useCart();
+  const { state } = useLocation();
+  const product = state?.product;
+
+  const handleAddToCart = () => {
+    addToCart({
+      ...product,
+      quantity: 1,
+    });
+  };
+  
+  
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -211,8 +225,9 @@ function ProductOverView() {
               </div>
 
               <button
-                type="submit"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                type="button"
+                className="mt-10 flex w-full items-center justify-cnter rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                onClick={handleAddToCart}
               >
                 Add to bag
               </button>

@@ -59,6 +59,8 @@ namespace ecomServer.Controllers.AuthControllers
             if (!_PassHash.VerifyPassword(dto.Password, user.PasswordHash, user.PasswordSalt))
                 return Unauthorized("Invalid credentials");
 
+            user.UserType = _db.UserTypes.Find(user.UserTypeId)!; 
+
             var token = _jwtUtils.GenerateJwtToken(user);
             return Ok(new { token });
         }

@@ -1,24 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import Loader from '../Items/Loader';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { login,loader } = useAuth();
+    const { login, loader, user } = useAuth();
     const navigate = useNavigate();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    
+
+    useEffect(() => {
+        if (user) {
+            if (user.UserType == "admin") {
+                navigate("/Admin/ProductList");
+            } else {
+                navigate("/ProductList");
+            }
+        }
+    }, [user, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        debugger
-        await login(userName,password);
-        const token = localStorage.getItem("token");
-        console.log("Token data :",token.claims);
-        if (token != null) {
-            navigate("/Products");
-          }
+        const success = await login(userName, password);
+        if (success) {}
     };
 
     return (

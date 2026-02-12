@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom'
 import Avatar from '../Profile/Avatar.jsx'
 import { useAuth } from '../../contexts/authContext';
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../../contexts/cartContext';
 
 const navigation = {
   categories: [
@@ -149,6 +150,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { cartItems } = useCart();
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   function logoutfn(e) {
     e.preventDefault();
@@ -414,7 +417,7 @@ export default function Navbar() {
                 <div className="ml-4 flow-root lg:ml-6">
                 <a href="#" className="group -m-2 flex items-center p-2">
                   <Cart />
-                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{totalItems}</span>
                   <span className="sr-only">items in cart, view bag</span>
                 </a>
               </div>

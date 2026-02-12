@@ -1,5 +1,9 @@
-﻿using ecomServer.Utils;
-using ecomServer.Data;
+﻿using ecomServer.Data;
+using ecomServer.Repositories;
+using ecomServer.Repositories.Contracts;
+using ecomServer.Services;
+using ecomServer.Services.Contracts;
+using ecomServer.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -56,6 +60,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // DI
 builder.Services.AddScoped<JwtUtil>();
 builder.Services.AddScoped<PasswordHashUtil>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductServices, ProductServices>();
+
 
 var app = builder.Build();
 
