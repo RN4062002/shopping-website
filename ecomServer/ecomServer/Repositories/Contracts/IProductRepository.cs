@@ -6,8 +6,8 @@ namespace ecomServer.Repositories.Contracts
     {
         Task<Product> AddProductAsync(Product product);
         Task<Product?> GetProductByIdAsync(int productId);
-        Task<Product?> UpdateProductAsync(Product product);
+        Task<Product> UpdateProductAsync(Product product);
         Task<bool> DeleteProductAsync(int productId);
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        Task<IEnumerable<Product>> GetAllProductsAsync(int? categoryId, int pageNumber, int pageSize);
     }
 }

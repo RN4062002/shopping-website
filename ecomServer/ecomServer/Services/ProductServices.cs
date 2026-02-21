@@ -1,17 +1,23 @@
 ﻿using ecomServer.DTO.ProductDTO;
+using ecomServer.Models;
 using ecomServer.Repositories;
 using ecomServer.Repositories.Contracts;
 using ecomServer.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting; // Added for IWebHostEnvironment
+using Microsoft.AspNetCore.Http; // Added for IFormFile
 
 namespace ecomServer.Services
 {
     public class ProductServices : IProductServices
     {
         private readonly IProductRepository _productRepository;
-        public ProductServices(IProductRepository productRepository) 
+        private readonly IWebHostEnvironment _webHostEnvironment; // Injected IWebHostEnvironment
+
+        public ProductServices(IProductRepository productRepository, IWebHostEnvironment webHostEnvironment)
         {
             _productRepository = productRepository;
+            _webHostEnvironment = webHostEnvironment; // Initialize IWebHostEnvironment
         }
         public async Task<ProductDTO> InsertProduct(ProductDTO productDto)
         {
@@ -21,16 +27,47 @@ namespace ecomServer.Services
             }
             var product = new Models.Product
             {
-                ProductName = productDto.ProductName,
-                ProductDesc = productDto.ProductDesc,
-                ProductPrice = productDto.ProductPrice,
-                ProductStock = productDto.ProductStock,
+                ProductName = productDto.Name, // Changed from ProductNameto Name
+                ProductDesc = productDto.Description, // Changed from ProductDesc to Description
+                ProductPrice = productDto.Price, // Changed from ProductPrice to Price
+                ProductStock = productDto.StockQuantity, // Changed from ProductStock to StockQuantity
                 CategoryId = productDto.CategoryId,
-                ProductImages = productDto.ProductImages,
-                CreatedAt = productDto.CreatedAt,
-                IsActive = productDto.IsActive
+                CreatedAt = DateTime.UtcNow, // Set CreatedAt
+                IsActive = true // Set IsActive
             };
-              await _productRepository.AddProductAsync(product);
+
+            if (productDto.Images != null && productDto.Images.Any())
+            {
+                product.ProductImages = new List<ProductImage>();
+                foreach (var imageFile in productDto.Images)
+                {
+                    if (imageFile.Length > 0)
+                    {
+                        // Ensure the wwwroot/images directory exists
+                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        product.ProductImages.Add(new ProductImage
+                        {
+                            ImageUrl = "/images/" + uniqueFileName, // Store relative URL
+                            IsPrimary = false // You can add logic here to determine primary image
+                        });
+                    }
+                }
+            }
+
+            await _productRepository.AddProductAsync(product);
             return productDto;
 
         }
@@ -41,14 +78,62 @@ namespace ecomServer.Services
             {
                 throw new ArgumentNullException(nameof(productDto), "Product not found");
             }
-            product.ProductName = productDto.ProductName;
-            product.ProductDesc = productDto.ProductDesc;
-            product.ProductPrice = productDto.ProductPrice;
-            product.ProductStock = productDto.ProductStock;
+            product.ProductName = productDto.Name; // Changed from ProductName to Name
+            product.ProductDesc = productDto.Description; // Changed from ProductDesc to Description
+            product.ProductPrice = productDto.Price; // Changed from ProductPrice to Price
+            product.ProductStock = productDto.StockQuantity; // Changed from ProductStock to StockQuantity
             product.CategoryId = productDto.CategoryId;
-            product.CreatedAt = productDto.CreatedAt;
-            product.ProductImages = productDto.ProductImages;
             product.IsActive = productDto.IsActive;
+
+            // Handle image deletion
+            if (productDto.ImageUrlsToDelete != null && productDto.ImageUrlsToDelete.Any())
+            {
+                foreach (var imageUrl in productDto.ImageUrlsToDelete)
+                {
+                    var imageToDelete = product.ProductImages.FirstOrDefault(pi => pi.ImageUrl == imageUrl);
+                    if (imageToDelete != null)
+                    {
+                        // Delete the file from wwwroot/images
+                        var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", Path.GetFileName(imageUrl));
+                        if (File.Exists(imagePath))
+                        {
+                            File.Delete(imagePath);
+                        }
+                        product.ProductImages.Remove(imageToDelete);
+                    }
+                }
+            }
+
+            // Handle new image uploads
+            if (productDto.Images != null && productDto.Images.Any())
+            {
+                foreach (var imageFile in productDto.Images)
+                {
+                    if (imageFile.Length > 0)
+                    {
+                        // Ensure the wwwroot/images directory exists
+                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        product.ProductImages.Add(new ProductImage
+                        {
+                            ImageUrl = "/images/" + uniqueFileName, // Store relative URL
+                            IsPrimary = false // You can add logic here to determine primary image
+                        });
+                    }
+                }
+            }
             
             await _productRepository.UpdateProductAsync(product);
             return productDto;
@@ -56,23 +141,42 @@ namespace ecomServer.Services
 
         public async Task<bool> DeleteProduct(int productId)
         {
+            var product = await _productRepository.GetProductByIdAsync(productId);
+            if (product == null)
+            {
+                return false;
+            }
+
+            // Delete image files
+            if (product.ProductImages != null && product.ProductImages.Any())
+            {
+                foreach (var image in product.ProductImages)
+                {
+                    var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", Path.GetFileName(image.ImageUrl));
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+            }
+
             var result = await _productRepository.DeleteProductAsync(productId);
             return result;
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetAllProducts()
+        public async Task<IEnumerable<ProductDTO>> GetAllProducts(int? categoryId, int pageNumber, int pageSize)
         {
 
-            var products = await _productRepository.GetAllProductsAsync();
+            var products = await _productRepository.GetAllProductsAsync(categoryId, pageNumber, pageSize);
 
             var result = products.Select(p => new ProductDTO
             {
                 ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                ProductPrice = p.ProductPrice,
-                ProductDesc = p.ProductDesc,
-                ProductStock = p.ProductStock,
-                ProductImages = p.ProductImages
+                Name = p.ProductName,
+                Price = p.ProductPrice,
+                Description = p.ProductDesc,
+                StockQuantity = p.ProductStock,
+                ImageUrls = p.ProductImages.Select(pi => pi.ImageUrl).ToList() // Populate ImageUrls
             }).ToList();
 
             return result;
@@ -80,19 +184,24 @@ namespace ecomServer.Services
         public async Task<ProductDTO> GetProductById(int ProductId)
         {
             var product = await _productRepository.GetProductByIdAsync(ProductId);
+            if (product == null)
+            {
+                return null; // Or throw an exception
+            }
 
             return new ProductDTO
             {
                 ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                ProductDesc = product.ProductDesc,
-                ProductPrice = product.ProductPrice,
-                ProductStock = product.ProductStock,
+                Name = product.ProductName,
+                Description = product.ProductDesc,
+                Price = product.ProductPrice,
+                StockQuantity = product.ProductStock,
                 CategoryId = product.CategoryId,
                 CreatedAt = product.CreatedAt,
                 IsActive = product.IsActive,
-                ProductImages = product.ProductImages
+                ImageUrls = product.ProductImages.Select(pi => pi.ImageUrl).ToList() // Populate ImageUrls
             };
         }
+
     }
 }

@@ -11,7 +11,7 @@ const Login = () => {
 
     useEffect(() => {
         if (user) {
-            if (user.UserType == "admin") {
+            if (user.UserType == "Admin") {
                 navigate("/Admin/ProductList");
             } else {
                 navigate("/ProductList");

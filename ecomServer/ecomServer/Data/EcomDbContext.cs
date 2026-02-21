@@ -34,6 +34,8 @@ public partial class EcomDbContext : DbContext
 
     public virtual DbSet<Review> Reviews { get; set; }
 
+    public virtual DbSet<Size> Sizes { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserType> UserTypes { get; set; }
@@ -43,9 +45,11 @@ public partial class EcomDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Latin1_General_CI_AS");
+
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.CartId).HasName("PK__Carts__51BCD7B747F15433");
+            entity.HasKey(e => e.CartId).HasName("PK__Carts__51BCD7B7117FDCE7");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -59,7 +63,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<CartItem>(entity =>
         {
-            entity.HasKey(e => e.CartItemId).HasName("PK__CartItem__488B0B0AA68E240D");
+            entity.HasKey(e => e.CartItemId).HasName("PK__CartItem__488B0B0ADB31F51A");
 
             entity.HasIndex(e => new { e.CartId, e.ProductId }, "UQ_Cart_Product").IsUnique();
 
@@ -76,7 +80,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A0BD8066958");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A0B96A32E69");
 
             entity.Property(e => e.CategoryName)
                 .HasMaxLength(150)
@@ -86,7 +90,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCFACCCDCFA");
+            entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BCFD57A79F1");
 
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("(getdate())")
@@ -104,7 +108,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED06810A76FD75");
+            entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED0681CCF6CC09");
 
             entity.Property(e => e.PriceAtPurchase).HasColumnType("decimal(10, 2)");
 
@@ -121,7 +125,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payments__9B556A38109D1A60");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payments__9B556A382A1DDE95");
 
             entity.Property(e => e.PaidAmount).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.PaidDate)
@@ -145,7 +149,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6CDC014AF10");
+            entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6CD11A0C803");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -163,11 +167,15 @@ public partial class EcomDbContext : DbContext
                 .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Products_Categories");
+
+            entity.HasOne(d => d.Size).WithMany(p => p.Products)
+                .HasForeignKey(d => d.SizeId)
+                .HasConstraintName("FK_Product_Size");
         });
 
         modelBuilder.Entity<ProductImage>(entity =>
         {
-            entity.HasKey(e => e.ImageId).HasName("PK__ProductI__7516F70C453770D5");
+            entity.HasKey(e => e.ImageId).HasName("PK__ProductI__7516F70C029DB747");
 
             entity.Property(e => e.ImageUrl)
                 .HasMaxLength(300)
@@ -182,7 +190,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79CE8D821F2A");
+            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79CE305E7BB3");
 
             entity.HasIndex(e => new { e.UserId, e.ProductId }, "UQ_User_Product_Review").IsUnique();
 
@@ -204,13 +212,21 @@ public partial class EcomDbContext : DbContext
                 .HasConstraintName("FK_Reviews_Users");
         });
 
+        modelBuilder.Entity<Size>(entity =>
+        {
+            entity.Property(e => e.IsActive).HasDefaultValue(false);
+            entity.Property(e => e.SizeName)
+                .HasMaxLength(30)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C937FFB4B");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C54585070");
 
-            entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF8714EE7B2").IsUnique();
+            entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF897F9E748").IsUnique();
 
-            entity.HasIndex(e => e.UserName, "UQ__Users__C9F28456A72EF5D1").IsUnique();
+            entity.HasIndex(e => e.UserName, "UQ__Users__C9F28456256E670A").IsUnique();
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -243,7 +259,7 @@ public partial class EcomDbContext : DbContext
 
         modelBuilder.Entity<UserType>(entity =>
         {
-            entity.HasKey(e => e.UserTypeId).HasName("PK__UserType__40D2D816961E2C00");
+            entity.HasKey(e => e.UserTypeId).HasName("PK__UserType__40D2D8167B80DB57");
 
             entity.Property(e => e.UserTypeDesc)
                 .HasMaxLength(100)

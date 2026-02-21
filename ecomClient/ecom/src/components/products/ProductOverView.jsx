@@ -6,10 +6,7 @@ const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
   href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
-  ],
+  
   images: [
     {
       src: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
@@ -27,11 +24,6 @@ const product = {
       src: 'https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
       alt: 'Model wearing plain white basic tee.',
     },
-  ],
-  colors: [
-    { id: 'white', name: 'White', classes: 'bg-white checked:outline-gray-400' },
-    { id: 'gray', name: 'Gray', classes: 'bg-gray-200 checked:outline-gray-400' },
-    { id: 'black', name: 'Black', classes: 'bg-gray-900 checked:outline-gray-900' },
   ],
   sizes: [
     { name: 'XXS', inStock: false },
@@ -54,6 +46,18 @@ const product = {
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
+
+const breadcrumbs = [
+  { id: 1, name: 'Men', href: '#' },
+  { id: 2, name: 'Clothing', href: '#' },
+]
+
+const  colors = [
+  { id: 'white', name: 'White', classes: 'bg-white checked:outline-gray-400' },
+  { id: 'gray', name: 'Gray', classes: 'bg-gray-200 checked:outline-gray-400' },
+  { id: 'black', name: 'Black', classes: 'bg-gray-900 checked:outline-gray-900' },
+]
+
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
@@ -64,7 +68,7 @@ function ProductOverView() {
 
   const { addToCart } = useCart();
   const { state } = useLocation();
-  const product = state?.product;
+  const products = state?.product;
 
   const handleAddToCart = () => {
     addToCart({
@@ -79,7 +83,7 @@ function ProductOverView() {
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            {product.breadcrumbs.map((breadcrumb) => (
+            {breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
@@ -171,11 +175,11 @@ function ProductOverView() {
 
                 <fieldset aria-label="Choose a color" className="mt-4">
                   <div className="flex items-center gap-x-3">
-                    {product.colors.map((color) => (
+                    {colors.map((color) => (
                       <div key={color.id} className="flex rounded-full outline -outline-offset-1 outline-black/10">
                         <input
                           defaultValue={color.id}
-                          defaultChecked={color === product.colors[0]}
+                          defaultChecked={color === product.colors}
                           name="color"
                           type="radio"
                           aria-label={color.name}
