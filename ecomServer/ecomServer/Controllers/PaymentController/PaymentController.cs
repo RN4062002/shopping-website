@@ -2,7 +2,7 @@ using ecomServer.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace ecomServer.Controllers
+namespace ecomServer.Controllers.PaymentController
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -40,6 +40,8 @@ public partial class EcomDbContext : DbContext
 
     public virtual DbSet<UserType> UserTypes { get; set; }
 
+    public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ecomdb");
 

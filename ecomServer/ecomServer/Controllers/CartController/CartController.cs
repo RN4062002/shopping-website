@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ecomServer.Controllers
+namespace ecomServer.Controllers.CartController
 {
     [Route("api/[controller]")]
     [ApiController]
