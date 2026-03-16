@@ -37,7 +37,7 @@ namespace ecomServer.Repositories
                                 return true;
                             }
                             return false;
-                        }                public async Task<IEnumerable<Models.Product>> GetAllProductsAsync(int? categoryId, int pageNumber, int pageSize)
+                        }                public async Task<(IEnumerable<Models.Product> Products, int TotalCount)> GetAllProductsAsync(int? categoryId, int pageNumber, int pageSize)
                 {
                     var query = _db.Products.Include(p => p.ProductImages).AsQueryable();
         
@@ -46,7 +46,10 @@ namespace ecomServer.Repositories
                         query = query.Where(p => p.CategoryId == categoryId.Value);
                     }
         
-                    return await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+                    var totalCount = await query.CountAsync();
+                    var products = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
+                    return (products, totalCount);
                 }
         
                 public async Task<Models.Product?> GetProductByIdAsync(int ProductId)

@@ -21,55 +21,61 @@ namespace ecomServer.Services
         }
         public async Task<ProductDTO> InsertProduct(ProductDTO productDto)
         {
-            if (productDto == null)
+            try
             {
-                throw new ArgumentNullException(nameof(productDto), "Product cannot be null");
-            }
-            var product = new Models.Product
-            {
-                ProductName = productDto.Name, // Changed from ProductNameto Name
-                ProductDesc = productDto.Description, // Changed from ProductDesc to Description
-                ProductPrice = productDto.Price, // Changed from ProductPrice to Price
-                ProductStock = productDto.StockQuantity, // Changed from ProductStock to StockQuantity
-                CategoryId = productDto.CategoryId,
-                CreatedAt = DateTime.UtcNow, // Set CreatedAt
-                IsActive = true // Set IsActive
-            };
-
-            if (productDto.Images != null && productDto.Images.Any())
-            {
-                product.ProductImages = new List<ProductImage>();
-                foreach (var imageFile in productDto.Images)
+                if (productDto == null)
                 {
-                    if (imageFile.Length > 0)
+                    throw new ArgumentNullException(nameof(productDto), "Product cannot be null");
+                }
+                var product = new Models.Product
+                {
+                    ProductName = productDto.Name,
+                    ProductDesc = productDto.Description,
+                    ProductPrice = productDto.Price,
+                    ProductStock = productDto.StockQuantity,
+                    CategoryId = productDto.CategoryId,
+                    CreatedAt = DateTime.UtcNow,
+                    IsActive = true
+                };
+
+                if (productDto.Images != null && productDto.Images.Any())
+                {
+                    product.ProductImages = new List<ProductImage>();
+                    foreach (var imageFile in productDto.Images)
                     {
-                        // Ensure the wwwroot/images directory exists
-                        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                        if (!Directory.Exists(uploadsFolder))
+                        if (imageFile.Length > 0)
                         {
-                            Directory.CreateDirectory(uploadsFolder);
+                            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                            if (!Directory.Exists(uploadsFolder))
+                            {
+                                Directory.CreateDirectory(uploadsFolder);
+                            }
+
+                            string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await imageFile.CopyToAsync(stream);
+                            }
+
+                            product.ProductImages.Add(new ProductImage
+                            {
+                                ImageUrl = "/images/" + uniqueFileName,
+                                IsPrimary = false
+                            });
                         }
-
-                        string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await imageFile.CopyToAsync(stream);
-                        }
-
-                        product.ProductImages.Add(new ProductImage
-                        {
-                            ImageUrl = "/images/" + uniqueFileName, // Store relative URL
-                            IsPrimary = false // You can add logic here to determine primary image
-                        });
                     }
                 }
+
+                await _productRepository.AddProductAsync(product);
+                return productDto;
             }
-
-            await _productRepository.AddProductAsync(product);
-            return productDto;
-
+            catch (Exception ex)
+            {
+                // Re-throw to be caught by Controller's catch block
+                throw new Exception($"Error in InsertProduct Service: {ex.Message}", ex);
+            }
         }
         public async Task<ProductDTO> UpdateProduct(ProductDTO productDto)
         {
@@ -164,22 +170,28 @@ namespace ecomServer.Services
             return result;
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetAllProducts(int? categoryId, int pageNumber, int pageSize)
+        public async Task<ProductPagedResponseDto> GetAllProducts(int? categoryId, int pageNumber, int pageSize)
         {
 
-            var products = await _productRepository.GetAllProductsAsync(categoryId, pageNumber, pageSize);
+            var (products, totalCount) = await _productRepository.GetAllProductsAsync(categoryId, pageNumber, pageSize);
 
-            var result = products.Select(p => new ProductDTO
+            var productDtos = products.Select(p => new ProductDTO
             {
                 ProductId = p.ProductId,
                 Name = p.ProductName,
                 Price = p.ProductPrice,
                 Description = p.ProductDesc,
                 StockQuantity = p.ProductStock,
-                ImageUrls = p.ProductImages.Select(pi => pi.ImageUrl).ToList() // Populate ImageUrls
+                ImageUrls = p.ProductImages.Select(pi => pi.ImageUrl).ToList()
             }).ToList();
 
-            return result;
+            return new ProductPagedResponseDto
+            {
+                Products = productDtos,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
         public async Task<ProductDTO> GetProductById(int ProductId)
         {

@@ -1,5 +1,6 @@
-﻿using ecomServer.DTO.ProductDTO;
+using ecomServer.DTO.ProductDTO;
 using ecomServer.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -18,6 +19,7 @@ namespace ecomServer.Controllers.ProductController
 
         [HttpPost]
         [Route("InsertProduct")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> InsertProduct([FromForm]  ProductDTO viewModel)
         {
             try
@@ -33,7 +35,8 @@ namespace ecomServer.Controllers.ProductController
 
         [HttpPut]
         [Route("UpdateProduct")]
-        public async Task<ActionResult> UpdateProduct(ProductDTO product)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> UpdateProduct([FromForm] ProductDTO product)
         {
             try
             {
@@ -55,11 +58,12 @@ namespace ecomServer.Controllers.ProductController
 
         [HttpDelete]
         [Route("DeleteProduct/{id}")]
-        public async Task<ActionResult> DeleteProduct(int productId)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> DeleteProduct(int id)
         {
             try
             {
-               bool Results = await _productService.DeleteProduct(productId);
+               bool Results = await _productService.DeleteProduct(id);
                 return Results ? Ok("Product Deleted Successfully") : NotFound("Product not found or deletion failed.");
             }
             catch (Exception ex)
@@ -70,7 +74,8 @@ namespace ecomServer.Controllers.ProductController
         // GET: api/<ProductController>
         [HttpGet]
         [Route("GetAllProducts")]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProducts([FromQuery] int? categoryId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        [Authorize(Roles = "Admin,Customer")]
+        public async Task<ActionResult<ProductPagedResponseDto>> GetAllProducts([FromQuery] int? categoryId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
@@ -86,11 +91,12 @@ namespace ecomServer.Controllers.ProductController
         // GET api/<ProductController>/5
         [HttpGet]
         [Route("GetProduct/{id}")]
-        public async Task<ActionResult> GetProduct(int ProductId)
+        [Authorize(Roles = "Admin,Customer")]
+        public async Task<ActionResult> GetProduct(int id)
         {
             try
             {
-                var product = await _productService.GetProductById(ProductId);
+                var product = await _productService.GetProductById(id);
                 return product != null ? Ok(product) : NotFound("Product not found.");
             }
             catch (Exception ex)

@@ -20,7 +20,8 @@ namespace ecomServer.Utils
             {
             new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
             new Claim(ClaimTypes.Name, user.UserName),
-            new Claim("UserType", user.UserType.UserTypeDesc.ToString())
+            new Claim("UserType", user.UserType.UserTypeDesc.ToString()),
+            new Claim("UserName", user.UserFirstName+" "+user.UserLastName)
         };
 
             var key = new SymmetricSecurityKey(

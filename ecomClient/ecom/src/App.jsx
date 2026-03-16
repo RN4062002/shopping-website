@@ -7,6 +7,8 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Products from './components/Products/Products'
 import ProductList from './components/Products/ProductList'
+import Categories from './components/Products/Categories'
+import Checkout from './components/Products/Checkout'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './routes/ProtectedRoute'
 import ProductOverView from './components/products/ProductOverView'
@@ -30,6 +32,20 @@ function App() {
           path="/Admin/ProductList" element={
             <ProtectedRoute roles={["Admin"]}>
               <Products />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Admin/Categories" element={
+            <ProtectedRoute roles={["Admin"]}>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Checkout" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <Checkout />
             </ProtectedRoute>
           }
         />

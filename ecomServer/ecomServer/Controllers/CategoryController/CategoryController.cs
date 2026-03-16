@@ -73,7 +73,7 @@ namespace ecomServer.Controllers.CategoryController
         }
 
         [HttpDelete]
-        [Route("InsertProduct/{id}")]
+        [Route("DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var result = await _categoryService.DeleteCategoryAsync(id);

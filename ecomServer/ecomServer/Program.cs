@@ -51,7 +51,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = jwtSettings["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(jwtSettings["Key"]!)
-            )
+            ),
+            RoleClaimType = "UserType" // Tell ASP.NET Core to look for roles in 'UserType' claim
         };
     });
 
