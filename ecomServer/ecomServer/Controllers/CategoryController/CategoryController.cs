@@ -1,5 +1,6 @@
 using ecomServer.Models;
 using ecomServer.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace ecomServer.Controllers.CategoryController
 
         [HttpGet]
         [Route("GetCategories")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
@@ -31,6 +33,7 @@ namespace ecomServer.Controllers.CategoryController
 
         [HttpGet]
         [Route("GetCategory/{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
             var category = await _categoryService.GetCategoryByIdAsync(id);

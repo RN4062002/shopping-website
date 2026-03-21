@@ -21,20 +21,31 @@ export default function ProductList() {
     : { categoryId: null, categoryName: 'All Products' };
 
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [searchQuery, setSearchQuery] = useState(location.state?.search || "");
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(12); 
   const [totalCount, setTotalCount] = useState(0);
 
-  // Update selected category if navigation state changes (from Navbar)
+  // Update selected category or search if navigation state changes (from Navbar)
   useEffect(() => {
     if (location.state?.categoryId !== undefined) {
         setSelectedCategory({ 
             categoryId: location.state.categoryId, 
             categoryName: location.state.categoryName || 'Filtered Category' 
         });
+        setSearchQuery(""); // Clear search if category selected
+        setPageNumber(1);
+    } else if (location.state?.search !== undefined) {
+        setSearchQuery(location.state.search);
+        setSelectedCategory({ categoryId: null, categoryName: 'All Products' }); // Clear category if searching
+        setPageNumber(1);
+    } else {
+        // Handle "All Products" click (no state)
+        setSelectedCategory({ categoryId: null, categoryName: 'All Products' });
+        setSearchQuery("");
         setPageNumber(1);
     }
-  }, [location.state]);
+  }, [location.key]); // Use location.key to detect any navigation event
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -56,10 +67,11 @@ export default function ProductList() {
   }, []);
 
   useEffect(() => {
+    debugger
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const data = await getAllProductsApi(selectedCategory.categoryId, pageNumber, pageSize);
+        const data = await getAllProductsApi(selectedCategory.categoryId, pageNumber, pageSize, searchQuery);
         setProducts(data?.products || []);
         setTotalCount(data?.totalCount || 0);
         setLoading(false);
@@ -70,7 +82,7 @@ export default function ProductList() {
     };
 
     fetchProducts();
-  }, [selectedCategory.categoryId, pageNumber, pageSize]);
+  }, [selectedCategory.categoryId, pageNumber, pageSize, searchQuery]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -97,7 +109,7 @@ export default function ProductList() {
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <h2 className="text-2xl font-bold text-gray-900">
-                {selectedCategory.categoryId ? selectedCategory.categoryName : 'All Items'}
+                {searchQuery ? `Search Results for "${searchQuery}"` : (selectedCategory.categoryId ? selectedCategory.categoryName : 'All Items')}
                 <span className="ml-2 text-sm font-normal text-gray-500">1-{products.length} of {totalCount} results</span>
             </h2>
 

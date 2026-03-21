@@ -22,7 +22,10 @@ namespace ecomServer.Repositories
         {
             return await _context.Orders
                 .Include(o => o.OrderItems)
-                .ThenInclude(oi => oi.Product)
+                    .ThenInclude(oi => oi.Product)
+                        .ThenInclude(p => p.ProductImages)
+                .Include(o => o.Payments)
+                .Include(o => o.User)
                 .FirstOrDefaultAsync(o => o.OrderId == orderId);
         }
 
@@ -42,23 +45,21 @@ namespace ecomServer.Repositories
                 UserId = userId,
                 OrderDate = DateTime.UtcNow,
                 OrderStatus = "Pending",
-                TotalAmount = cartItems.Sum(ci => ci.Quantity * ci.Product.ProductPrice)
+                TotalAmount = cartItems.Sum(ci => ci.Quantity * ci.Product.ProductPrice),
+                OrderItems = new List<OrderItem>()
             };
-
-            _context.Orders.Add(order);
 
             foreach (var cartItem in cartItems)
             {
-                var orderItem = new OrderItem
+                order.OrderItems.Add(new OrderItem
                 {
-                    OrderId = order.OrderId,
                     ProductId = cartItem.ProductId,
                     Quantity = cartItem.Quantity,
                     PriceAtPurchase = cartItem.Product.ProductPrice
-                };
-                _context.OrderItems.Add(orderItem);
+                });
             }
 
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
             return order;
         }

@@ -6,11 +6,17 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { XMarkIcon,ShoppingBagIcon,MinusIcon,PlusIcon } from '@heroicons/react/24/outline'
 import { useCart } from '../../contexts/cartContext'
 
+import { Link } from 'react-router-dom'
+
 function Cart() {
   const [open, setOpen] = useState(false)
-  const { cartItems, removeFromCart, addToCart, decreaseCartItem } = useCart();
+  const { cartItems = [], removeFromCart, addToCart, decreaseCartItem } = useCart();
 
-  const subtotal = cartItems.reduce((acc, item) => acc + parseFloat(item.price.replace('$', '')) * item.quantity, 0);
+ // const subtotal = cartItems.reduce((acc, item) => acc + parseFloat(item.price.replace('$', '')) * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div>
@@ -105,12 +111,13 @@ function Cart() {
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
-                      <a
-                        href="#"
+                      <Link
+                        to="/Checkout"
+                        onClick={() => setOpen(false)}
                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700"
                       >
                         Checkout
-                      </a>
+                      </Link>
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>

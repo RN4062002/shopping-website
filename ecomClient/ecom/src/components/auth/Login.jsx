@@ -1,23 +1,27 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import Loader from '../Items/Loader';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 const Login = () => {
     const { login, loader, user } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
         if (user) {
-            if (user.UserType == "Admin") {
+            if (from !== "/") {
+                navigate(from, { replace: true });
+            } else if (user.UserType == "Admin") {
                 navigate("/Admin/ProductList");
             } else {
                 navigate("/ProductList");
             }
         }
-    }, [user, navigate]);
+    }, [user, navigate, from]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

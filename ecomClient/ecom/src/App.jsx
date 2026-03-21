@@ -9,6 +9,8 @@ import Products from './components/Products/Products'
 import ProductList from './components/Products/ProductList'
 import Categories from './components/Products/Categories'
 import Checkout from './components/Products/Checkout'
+import OrderSuccess from './components/Products/OrderSuccess'
+import Invoice from './components/Products/Invoice'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './routes/ProtectedRoute'
 import ProductOverView from './components/products/ProductOverView'
@@ -20,16 +22,12 @@ function App() {
       <Navbar />
       <Routes>
       <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/ProductList" element={
-          <ProtectedRoute roles={["Customer","Admin"]}>
-            <ProductList />
-          </ProtectedRoute>
-        }
-        />
-        <Route
-          path="/Admin/ProductList" element={
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
+      <Route path="/ProductList" element={<ProductList />} />
+      <Route
+        path="/Admin/ProductList" element={
+
             <ProtectedRoute roles={["Admin"]}>
               <Products />
             </ProtectedRoute>
@@ -46,6 +44,20 @@ function App() {
           path="/Checkout" element={
             <ProtectedRoute roles={["Customer", "Admin"]}>
               <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/OrderSuccess" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Invoice/:orderId" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <Invoice />
             </ProtectedRoute>
           }
         />

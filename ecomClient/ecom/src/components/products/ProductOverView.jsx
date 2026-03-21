@@ -39,9 +39,11 @@ function ProductOverView() {
   const [categoryName, setCategoryName] = useState("Category");
   const images = product?.imageUrls?.map(url => `${IMAGE_BASE_URL}${url}`) || ["https://via.placeholder.com/600"];
   const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     const fetchCatName = async () => {
+      debugger
         if (product?.categoryId) {
             try {
                 const cats = await getCategoriesApi();
@@ -60,16 +62,24 @@ function ProductOverView() {
   }
 
   const handleAddToCart = () => {
+    debugger
+    setIsAdding(true);
     addToCart({
       id: product.productId,
       name: product.name,
-      price: `$${product.price}`,
+      price: product.price,
       image: images[0],
       quantity: 1,
     });
+    
+    // Reset animation state after 1 second
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 1000);
   };
 
   const handleBuyNow = () => {
+    debugger
     handleAddToCart();
     navigate("/Checkout");
   };
@@ -185,9 +195,20 @@ function ProductOverView() {
                 <div className="space-y-3">
                   <button
                     onClick={handleAddToCart}
-                    className="w-full bg-indigo-700 hover:bg-indigo-500 text-white font-medium py-3 rounded-lg transition-colors shadow-sm disabled:bg-gray-200 disabled:cursor-not-allowed"
+                    disabled={isAdding}
+                    className={classNames(
+                      "w-full font-medium py-3 rounded-lg transition-all duration-300 shadow-sm disabled:cursor-not-allowed",
+                      isAdding 
+                        ? "bg-green-600 text-white animate-cart-pop scale-95" 
+                        : "bg-indigo-700 hover:bg-indigo-500 text-white"
+                    )}
                   >
-                    Add to Bag
+                    {isAdding ? (
+                      <span className="flex items-center justify-center">
+                        <CheckIcon className="size-5 mr-2" />
+                        Added to Bag
+                      </span>
+                    ) : "Add to Bag"}
                   </button>
                   <button
                     onClick={handleBuyNow}

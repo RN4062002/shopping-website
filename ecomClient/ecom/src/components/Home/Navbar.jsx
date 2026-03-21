@@ -18,9 +18,10 @@ import { getCategoriesApi } from '../../api/categoryApi';
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [categories, setCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const { logout, user } = useAuth();
   const navigate = useNavigate();
-  const { cartItems } = useCart();
+  const { cartItems = [] } = useCart();
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
@@ -43,6 +44,29 @@ export default function Navbar() {
       navigate("/Login");
     }
   }
+
+  const handleSearch = (e) => {
+    if (e) e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate("/ProductList", { state: { search: searchTerm } });
+    }
+  };
+
+  // Debounced search logic
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      // If searchTerm is cleared, send empty search to show all products
+      navigate("/ProductList", { state: { search: searchTerm.trim() } });
+    }, 700);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
+
+  const handleBlur = () => {
+    // Optionally clear or handle blur here if needed 
+    // The user specifically mentioned "if he click outside search box seach don't"
+    // So we ensure the blur doesn't trigger a search (the timeout handle above handles the auto-search)
+  };
 
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm">
@@ -150,9 +174,18 @@ export default function Navbar() {
             <div className="flex items-center space-x-6">
               {/* Search */}
               <div className="flex lg:ml-6">
-                <button className="p-2 text-gray-400 hover:text-gray-500 transition-colors">
-                  <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
-                </button>
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search products..."
+                    className="block w-full rounded-full border-0 py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 transition-all w-32 focus:w-64"
+                  />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </div>
+                </form>
               </div>
 
               {/* Cart */}

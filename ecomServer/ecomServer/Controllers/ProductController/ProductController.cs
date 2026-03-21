@@ -71,15 +71,14 @@ namespace ecomServer.Controllers.ProductController
                 return BadRequest(ex.Message);
             }
         }
-        // GET: api/<ProductController>
         [HttpGet]
         [Route("GetAllProducts")]
-        [Authorize(Roles = "Admin,Customer")]
-        public async Task<ActionResult<ProductPagedResponseDto>> GetAllProducts([FromQuery] int? categoryId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductPagedResponseDto>> GetAllProducts([FromQuery] int? categoryId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? search = null)
         {
             try
             {
-                var result =  await _productService.GetAllProducts(categoryId, pageNumber, pageSize);
+                var result =  await _productService.GetAllProducts(categoryId, pageNumber, pageSize, search);
                 return result != null ? Ok(result) : NotFound("No products found.");
             }
             catch (Exception ex)
@@ -91,7 +90,7 @@ namespace ecomServer.Controllers.ProductController
         // GET api/<ProductController>/5
         [HttpGet]
         [Route("GetProduct/{id}")]
-        [Authorize(Roles = "Admin,Customer")]
+        [AllowAnonymous]
         public async Task<ActionResult> GetProduct(int id)
         {
             try

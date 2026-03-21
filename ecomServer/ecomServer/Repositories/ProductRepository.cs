@@ -37,13 +37,18 @@ namespace ecomServer.Repositories
                                 return true;
                             }
                             return false;
-                        }                public async Task<(IEnumerable<Models.Product> Products, int TotalCount)> GetAllProductsAsync(int? categoryId, int pageNumber, int pageSize)
+                        }                public async Task<(IEnumerable<Models.Product> Products, int TotalCount)> GetAllProductsAsync(int? categoryId, int pageNumber, int pageSize, string? search = null)
                 {
                     var query = _db.Products.Include(p => p.ProductImages).AsQueryable();
         
                     if (categoryId.HasValue)
                     {
                         query = query.Where(p => p.CategoryId == categoryId.Value);
+                    }
+
+                    if (!string.IsNullOrEmpty(search))
+                    {
+                        query = query.Where(p => p.ProductName.Contains(search) || (p.ProductDesc != null && p.ProductDesc.Contains(search)));
                     }
         
                     var totalCount = await query.CountAsync();

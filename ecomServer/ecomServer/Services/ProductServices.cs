@@ -170,10 +170,10 @@ namespace ecomServer.Services
             return result;
         }
 
-        public async Task<ProductPagedResponseDto> GetAllProducts(int? categoryId, int pageNumber, int pageSize)
+        public async Task<ProductPagedResponseDto> GetAllProducts(int? categoryId, int pageNumber, int pageSize, string? search = null)
         {
 
-            var (products, totalCount) = await _productRepository.GetAllProductsAsync(categoryId, pageNumber, pageSize);
+            var (products, totalCount) = await _productRepository.GetAllProductsAsync(categoryId, pageNumber, pageSize, search);
 
             var productDtos = products.Select(p => new ProductDTO
             {

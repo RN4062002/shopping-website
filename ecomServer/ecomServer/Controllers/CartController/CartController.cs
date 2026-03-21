@@ -1,4 +1,6 @@
+using ecomServer.DTO.CartDTO;
 using ecomServer.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,6 +9,7 @@ namespace ecomServer.Controllers.CartController
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CartController : ControllerBase
     {
         private readonly ICartServices _cartService;
@@ -25,10 +28,10 @@ namespace ecomServer.Controllers.CartController
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddToCart(int productId, int quantity)
+        public async Task<IActionResult> AddToCart([FromBody] AddToCartRequest request)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var cart = await _cartService.AddToCartAsync(userId, productId, quantity);
+            var cart = await _cartService.AddToCartAsync(userId, request.ProductId, request.Quantity);
             return Ok(cart);
         }
 

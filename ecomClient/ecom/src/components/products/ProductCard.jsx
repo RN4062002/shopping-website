@@ -8,6 +8,7 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const handleViewProduct = () => {
+    debugger
     navigate("/ProductOverView", { state: { product } });
   };
   
