@@ -88,6 +88,7 @@ builder.Services.AddScoped<ErrorLogService>();
 
 var app = builder.Build();                     
 app.UseForwardedHeaders();                   // Correctly handle proxy headers for Render
+app.UseCors();
 app.UseMiddleware<RequestTimingMiddleware>(); 
 app.UseMiddleware<ExceptionMiddleware>();    
 if (app.Environment.IsDevelopment())        
@@ -97,7 +98,6 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();           
 app.UseStaticFiles();               
-app.UseCors();                     
 app.UseAuthentication();          
 app.UseAuthorization();          
 
