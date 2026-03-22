@@ -19,9 +19,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Expose the port the app listens on
-# Render will automatically detect this or you can set the PORT env var
-EXPOSE 8080
-ENV ASPNETCORE_URLS=http://+:8080
-
-ENTRYPOINT ["dotnet", "ecomServer.dll"]
+# Render provides PORT at runtime. Default to 10000 for local container runs.
+EXPOSE 10000
+ENTRYPOINT ["sh", "-c", "ASPNETCORE_URLS=http://+:${PORT:-10000} dotnet ecomServer.dll"]
