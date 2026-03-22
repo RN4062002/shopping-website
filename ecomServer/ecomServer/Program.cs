@@ -1,4 +1,5 @@
-﻿using ecomServer.Data;
+using Microsoft.AspNetCore.HttpOverrides;
+using ecomServer.Data;
 using ecomServer.Middleware;
 using ecomServer.Repositories;
 using ecomServer.Repositories.Contracts;
@@ -13,6 +14,14 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add this section to support Render's load balancer
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // Controllers
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -23,16 +32,16 @@ builder.Services.AddControllers()
 
 
 // ✅ DbContext 
-builder.Services.AddDbContext<EcomDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ecomdb"))); // Configure Entity Framework to use SQL Server with the connection string from configuration
+builder.Services.AddDbContext<EcomDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ecomdb"))); 
 
 // Swagger
-builder.Services.AddEndpointsApiExplorer(); // Enable API endpoint exploration for Swagger
-builder.Services.AddSwaggerGen();          // Enable Swagger generation for API documentation
+builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddSwaggerGen();          
 
 // CORS 
 builder.Services.AddCors(options =>
 {
-   options.AddDefaultPolicy(policy => // Allow any origin, header, and method for CORS
+   options.AddDefaultPolicy(policy => 
     {
         policy.AllowAnyOrigin()
               .AllowAnyHeader()
@@ -57,7 +66,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(jwtSettings["Key"]!)
             ),
-            RoleClaimType = "UserType" // Tell ASP.NET Core to look for roles in 'UserType' claim
+            RoleClaimType = "UserType" 
         };
     });
 
@@ -77,19 +86,20 @@ builder.Services.AddScoped<IPaymentServices, PaymentServices>();
 builder.Services.AddScoped<ErrorLogService>();
 
 
-var app = builder.Build();                     // Build the application
-app.UseMiddleware<RequestTimingMiddleware>(); // custom request timing middleware
-app.UseMiddleware<ExceptionMiddleware>();    // custom exception handling middleware
-if (app.Environment.IsDevelopment())        // Enable Swagger only in development environment
+var app = builder.Build();                     
+app.UseForwardedHeaders();                   // Correctly handle proxy headers for Render
+app.UseMiddleware<RequestTimingMiddleware>(); 
+app.UseMiddleware<ExceptionMiddleware>();    
+if (app.Environment.IsDevelopment())        
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();           // Redirect HTTP to HTTPS
-app.UseStaticFiles();               // Added to serve static files
-app.UseCors();                     // Enable CORS
-app.UseAuthentication();          // Enable authentication
-app.UseAuthorization();          // Enable authorization
+app.UseHttpsRedirection();           
+app.UseStaticFiles();               
+app.UseCors();                     
+app.UseAuthentication();          
+app.UseAuthorization();          
 
-app.MapControllers();          // Map controller routes
-app.Run();                    // Start the application
+app.MapControllers();          
+app.Run();                    
