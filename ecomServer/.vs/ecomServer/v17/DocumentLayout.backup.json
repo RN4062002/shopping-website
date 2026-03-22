@@ -1,30 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\learning dot net core\\ecom project\\ecomServer\\",
+  "WorkspaceRootPath": "E:\\projects\\shopping website\\ecomServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\controllers\\authcontrollers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\controllers\\authcontrollers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\dto\\cartdto\\addtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\dto\\cartdto\\addtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\utils\\passwordhashutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\utils\\passwordhashutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\utils\\jwtutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\utils\\jwtutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|f:\\learning dot net core\\ecom project\\ecomserver\\ecomserver\\ecomserver.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\ecomserver.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\data\\ecomdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\data\\ecomdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,83 +30,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "ecomServer\\appsettings.Development.json",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\appsettings.Development.json",
-              "RelativeToolTip": "ecomServer\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-25T07:50:39.91Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ecomServer.http",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\ecomServer.http",
-              "RelativeDocumentMoniker": "ecomServer\\ecomServer.http",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\ecomServer.http",
-              "RelativeToolTip": "ecomServer\\ecomServer.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2026-01-25T07:25:06.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\appsettings.json",
-              "RelativeDocumentMoniker": "ecomServer\\appsettings.json",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\appsettings.json",
-              "RelativeToolTip": "ecomServer\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-25T07:24:57.168Z",
+              "DocumentIndex": 0,
+              "Title": "AddToCartRequest.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "RelativeDocumentMoniker": "ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "RelativeToolTip": "ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T12:13:02.322Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PasswordHashUtil.cs",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Utils\\PasswordHashUtil.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Utils\\PasswordHashUtil.cs",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Utils\\PasswordHashUtil.cs",
-              "RelativeToolTip": "ecomServer\\Utils\\PasswordHashUtil.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAqwBoAAAAIAAAAAAAAAA==",
+              "Title": "JwtUtil.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
+              "RelativeDocumentMoniker": "ecomServer\\Utils\\JwtUtil.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
+              "RelativeToolTip": "ecomServer\\Utils\\JwtUtil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T08:37:16.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Controllers\\AuthControllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Controllers\\AuthControllers\\AuthController.cs",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Controllers\\AuthControllers\\AuthController.cs",
-              "RelativeToolTip": "ecomServer\\Controllers\\AuthControllers\\AuthController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAYwDUAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T08:35:15.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T06:47:43.503Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Program.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Program.cs",
-              "ToolTip": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\Program.cs",
-              "RelativeToolTip": "ecomServer\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBkAAAAAAAAAAAAAAA==",
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "ecomServer\\Repositories\\ProductRepository.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "ecomServer\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T07:55:57.711Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T04:49:01.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EcomDbContext.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Data\\EcomDbContext.cs",
+              "RelativeDocumentMoniker": "ecomServer\\Data\\EcomDbContext.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Data\\EcomDbContext.cs",
+              "RelativeToolTip": "ecomServer\\Data\\EcomDbContext.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAiwCgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T06:10:08.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Program.cs",
+              "RelativeDocumentMoniker": "ecomServer\\Program.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Program.cs",
+              "RelativeToolTip": "ecomServer\\Program.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAApwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T04:31:13.839Z"
             }
           ]
         }
