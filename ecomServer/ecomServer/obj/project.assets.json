@@ -5146,11 +5146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\ecomServer.csproj",
+      "projectUniqueName": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\ecomServer.csproj",
       "projectName": "ecomServer",
-      "projectPath": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\ecomServer.csproj",
+      "projectPath": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\ecomServer.csproj",
       "packagesPath": "C:\\Users\\rohan\\.nuget\\packages\\",
-      "outputPath": "F:\\learning dot net core\\ecom project\\ecomServer\\ecomServer\\obj\\",
+      "outputPath": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

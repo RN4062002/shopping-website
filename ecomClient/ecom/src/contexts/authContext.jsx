@@ -1,11 +1,20 @@
-import React, { createContext,useContext,useState } from "react";
+import React, { createContext,useContext,useState,useEffect } from "react";
 const AuthContext = createContext();
 import {loginApi,registerApi} from "../api/AuthApi";
+import { jwtDecode } from "jwt-decode";
 
 
 export const AuthContextProvider = ({children}) =>{
     const [user,setUser] = useState(null);
     const [loader,setLoader] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decoded = jwtDecode(token);
+            setUser(decoded);
+        }
+    }, []);
 
     const register = async(formData) =>
     {
@@ -30,14 +39,17 @@ export const AuthContextProvider = ({children}) =>{
     }
 
     const login = async(userData,passData) => {
+        debugger
         try
         {
             setLoader(true);
             const data = await loginApi(userData,passData);
-            console.log(data);
             localStorage.setItem("token",data.token);
-            setUser(data.user);
+            const decoded = jwtDecode(data.token);
+            console.log("user data log :",decoded);
+            setUser(decoded);
            setLoader(false);
+           return data.token;
 
         }
         catch(error)

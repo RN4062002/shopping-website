@@ -1,24 +1,32 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import Loader from '../Items/Loader';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 const Login = () => {
-    const { login,loader } = useAuth();
+    const { login, loader, user } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    
+
+    useEffect(() => {
+        if (user) {
+            if (from !== "/") {
+                navigate(from, { replace: true });
+            } else if (user.UserType == "Admin") {
+                navigate("/Admin/ProductList");
+            } else {
+                navigate("/ProductList");
+            }
+        }
+    }, [user, navigate, from]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        debugger
-        await login(userName,password);
-        const token = localStorage.getItem("token");
-        console.log("Token data :",token.claims);
-        if (token != null) {
-            navigate("/Products");
-          }
+        const success = await login(userName, password);
+        if (success) {}
     };
 
     return (
@@ -56,7 +64,7 @@ const Login = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2 text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         >
                             Login
                         </button>

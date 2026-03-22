@@ -21,6 +21,8 @@ public partial class Product
 
     public bool? IsActive { get; set; }
 
+    public int? SizeId { get; set; }
+
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
 
     public virtual Category Category { get; set; } = null!;
@@ -30,4 +32,6 @@ public partial class Product
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    public virtual Size? Size { get; set; }
 }

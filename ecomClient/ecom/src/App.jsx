@@ -3,28 +3,67 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Home/Navbar'
 import Home from './components/Home/Home'
-import { AuthContextProvider } from './contexts/authContext'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import Products from './components/products/Products'
-import Cart from './components/products/Cart'
-import ProductList from './components/Admin/ProductList'
+import Products from './components/Products/Products'
+import ProductList from './components/Products/ProductList'
+import Categories from './components/Products/Categories'
+import Checkout from './components/Products/Checkout'
+import OrderSuccess from './components/Products/OrderSuccess'
+import Invoice from './components/Products/Invoice'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './routes/ProtectedRoute'
+import ProductOverView from './components/products/ProductOverView'
 
 function App() {
 
   return (
     <BrowserRouter>
-    <Navbar/>
-    <Routes>
-      <Route path = "/" element={<Home/>}/>
-      <Route path = "/Login" element={<Login/>}/>
-      <Route path = "/Register" element={<Register/>}/>
-      <Route path = "/Products" element={<Products/>}/>
-      <Route path = "/Admin/ProductList" element={<ProductList/>}/>
-      {/* <Route path = "/Products/Cart" element={<Cart/>}/> */}
-    </Routes>
-   </BrowserRouter>
+      <Navbar />
+      <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
+      <Route path="/ProductList" element={<ProductList />} />
+      <Route
+        path="/Admin/ProductList" element={
+
+            <ProtectedRoute roles={["Admin"]}>
+              <Products />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Admin/Categories" element={
+            <ProtectedRoute roles={["Admin"]}>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Checkout" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/OrderSuccess" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Invoice/:orderId" element={
+            <ProtectedRoute roles={["Customer", "Admin"]}>
+              <Invoice />
+            </ProtectedRoute>
+          }
+        />
+      <Route path="/ProductOverView" element={<ProductOverView />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
