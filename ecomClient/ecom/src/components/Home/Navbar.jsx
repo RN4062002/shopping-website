@@ -58,6 +58,7 @@ export default function Navbar() {
       // If searchTerm is cleared, send empty search to show all products
       navigate("/ProductList", { state: { search: searchTerm.trim() } });
     }, 700);
+    
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\projects\\shopping website\\ecomServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\dto\\cartdto\\addtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\dto\\cartdto\\addtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\utils\\jwtutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\utils\\jwtutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,44 +15,12 @@
       "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\controllers\\productcontroller\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\controllers\\productcontroller\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\controllers\\categorycontroller\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\controllers\\categorycontroller\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\services\\categoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\services\\categoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\data\\ecomdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\data\\ecomdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\models\\errorlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\models\\errorlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\controllers\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\controllers\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\middleware\\requesttimingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\middleware\\requesttimingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|e:\\projects\\shopping website\\ecomserver\\ecomserver\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE886806-B361-4E40-A761-332239D259C0}|ecomServer\\ecomServer.csproj|solutionrelative:ecomserver\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,32 +35,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "JwtUtil.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Utils\\JwtUtil.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
-              "RelativeToolTip": "ecomServer\\Utils\\JwtUtil.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAAOAAAAAAAAAA==",
+              "Title": "AddToCartRequest.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "RelativeDocumentMoniker": "ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "RelativeToolTip": "ecomServer\\DTO\\CartDTO\\AddToCartRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T06:47:43.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\ProductController\\ProductController.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Controllers\\ProductController\\ProductController.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\ProductController\\ProductController.cs",
-              "RelativeToolTip": "ecomServer\\Controllers\\ProductController\\ProductController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAADgvxcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T04:49:01.527Z",
+              "WhenOpened": "2026-03-21T12:13:02.322Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "JwtUtil.cs",
+              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
+              "RelativeDocumentMoniker": "ecomServer\\Utils\\JwtUtil.cs",
+              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Utils\\JwtUtil.cs",
+              "RelativeToolTip": "ecomServer\\Utils\\JwtUtil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T06:47:43.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ProductRepository.cs",
               "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Repositories\\ProductRepository.cs",
               "RelativeDocumentMoniker": "ecomServer\\Repositories\\ProductRepository.cs",
@@ -96,61 +67,11 @@
               "RelativeToolTip": "ecomServer\\Repositories\\ProductRepository.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T04:49:01.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CategoryRepository.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Repositories\\CategoryRepository.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Repositories\\CategoryRepository.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Repositories\\CategoryRepository.cs",
-              "RelativeToolTip": "ecomServer\\Repositories\\CategoryRepository.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBwAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T06:18:17.618Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CategoryServices.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Services\\CategoryServices.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Services\\CategoryServices.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Services\\CategoryServices.cs",
-              "RelativeToolTip": "ecomServer\\Services\\CategoryServices.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwB0AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T06:17:52.334Z"
+              "WhenOpened": "2026-03-15T04:49:01.543Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\CategoryController\\CategoryController.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Controllers\\CategoryController\\CategoryController.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\CategoryController\\CategoryController.cs",
-              "RelativeToolTip": "ecomServer\\Controllers\\CategoryController\\CategoryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T06:13:44.103Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ErrorLog.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Models\\ErrorLog.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Models\\ErrorLog.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Models\\ErrorLog.cs",
-              "RelativeToolTip": "ecomServer\\Models\\ErrorLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T06:10:13.977Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "EcomDbContext.cs",
               "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Data\\EcomDbContext.cs",
               "RelativeDocumentMoniker": "ecomServer\\Data\\EcomDbContext.cs",
@@ -162,42 +83,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\OrderController\\OrderController.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Controllers\\OrderController\\OrderController.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Controllers\\OrderController\\OrderController.cs",
-              "RelativeToolTip": "ecomServer\\Controllers\\OrderController\\OrderController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T05:35:09.771Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "RequestTimingMiddleware.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Middleware\\RequestTimingMiddleware.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Middleware\\RequestTimingMiddleware.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Middleware\\RequestTimingMiddleware.cs",
-              "RelativeToolTip": "ecomServer\\Middleware\\RequestTimingMiddleware.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBoAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T05:27:11.707Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ExceptionMiddleware.cs",
-              "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "ecomServer\\Middleware\\ExceptionMiddleware.cs",
-              "ToolTip": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeToolTip": "ecomServer\\Middleware\\ExceptionMiddleware.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T05:12:13.993Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\projects\\shopping website\\ecomServer\\ecomServer\\Program.cs",
@@ -206,8 +91,7 @@
               "RelativeToolTip": "ecomServer\\Program.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAApwEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-07T04:31:13.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-07T04:31:13.839Z"
             }
           ]
         }
